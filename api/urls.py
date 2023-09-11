@@ -9,6 +9,7 @@ urlpatterns = [
     path('candidatedirectory-list/', views.CandidatedirectoryListView.as_view(), name='candidatedirectory-list'),
     path('candidatedirectory/<int:pk>/', views.CandidatedirectoryDetailView.as_view(), name='candidatedirectory-detail'),
     path('candidatedirectory/create/', views.CandidatedirectoryCreateView.as_view(), name='candidatedirectory-create'),
+#   path('candidatedirectory-list/<int:pk>/', views.CandidatedirectoryUpdateView.as_view(), name='update_model'),
 ]
 
 
