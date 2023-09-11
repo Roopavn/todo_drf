@@ -6,6 +6,7 @@ class CandidatedirectorySerializer(serializers.ModelSerializer):
 		model = Candidatedirectory
 		fields ='__all__'
 
+<<<<<<< HEAD
 	def validate(self, data):
 		email = data.get('email')
 		contact_no_primary = data.get('contact_no_primary')
@@ -31,3 +32,6 @@ class CandidatedirectorySerializer(serializers.ModelSerializer):
 				raise serializers.ValidationError('This phone number is already in use.')
 
 		return data
+=======
+	
+>>>>>>> 45a149e707e986525b9f18fa71346e7dee879837
