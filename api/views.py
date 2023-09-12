@@ -49,26 +49,26 @@ class CandidatedirectoryCreateView(generics.CreateAPIView):
     queryset = Candidatedirectory.objects.all()
     serializer_class = CandidatedirectorySerializer  
 
-def create(self, request, *args, **kwargs):
-        # Get the data from the request
-        data = request.data
+    def create(self, request, *args, **kwargs):
+            # Get the data from the request
+            data = request.data
 
-        # Validate the data using the serializer
-        serializer = self.get_serializer(data=data)
-        serializer.is_valid(raise_exception=True)
+            # Validate the data using the serializer
+            serializer = self.get_serializer(data=data)
+            serializer.is_valid(raise_exception=True)
 
-        # Check if an object with the same email or phone_number already exists in the database
-        email = data.get('email')
-        contact_no_primary = data.get('contact_no_primary')
-        if Candidatedirectory.objects.filter(email=email).exists():
-            return Response({'error': 'This email is already in use.'}, status=status.HTTP_400_BAD_REQUEST)
-        if Candidatedirectory.objects.filter(contact_no_primary=contact_no_primary).exists():
-            return Response({'error': 'This phone number is already in use.'}, status=status.HTTP_400_BAD_REQUEST)
+            # Check if an object with the same email or phone_number already exists in the database
+            email = data.get('email')
+            contact_no_primary = data.get('contact_no_primary')
+            if Candidatedirectory.objects.filter(email=email).exists():
+                return Response({'error': 'This email is already in use.'}, status=status.HTTP_400_BAD_REQUEST)
+            if Candidatedirectory.objects.filter(contact_no_primary=contact_no_primary).exists():
+                return Response({'error': 'This phone number is already in use.'}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Create a new object if data is valid and no duplicates exist
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+            # Create a new object if data is valid and no duplicates exist
+            self.perform_create(serializer)
+            headers = self.get_success_headers(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 class CandidatedirectoryUpdateView(generics.UpdateAPIView):
